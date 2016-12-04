@@ -35,6 +35,7 @@ public class Presserei1 extends JFrame {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	JComboBox comboBox;
 
 	/**
 	 * Launch the application.
@@ -97,7 +98,7 @@ public class Presserei1 extends JFrame {
 			}
 		});
 		textField.setBounds(6, 62, 116, 32);
-		panel.add(textField);
+		// panel.add(textField);
 		textField.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("ArbeitsplanNr");
@@ -105,7 +106,7 @@ public class Presserei1 extends JFrame {
 		panel.add(lblNewLabel);
 
 		textField_1 = new JTextField();
-		textField_1.setBounds(177, 62, 116, 32);
+		textField_1.setBounds(243, 62, 179, 44);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		textField_1.addMouseListener(new MouseAdapter() {
@@ -125,11 +126,11 @@ public class Presserei1 extends JFrame {
 		// textField_1=JOptionPane.showInputDialog(null, "message");
 
 		JLabel lblKomm = new JLabel("Komm.-Nr");
-		lblKomm.setBounds(196, 34, 76, 16);
+		lblKomm.setBounds(287, 34, 76, 16);
 		panel.add(lblKomm);
 
 		textField_2 = new JTextField();
-		textField_2.setBounds(320, 62, 116, 32);
+		textField_2.setBounds(519, 62, 179, 44);
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 		/**
@@ -144,11 +145,11 @@ public class Presserei1 extends JFrame {
 		});
 
 		JLabel lblPos = new JLabel("Pos.");
-		lblPos.setBounds(353, 34, 61, 16);
+		lblPos.setBounds(575, 34, 61, 16);
 		panel.add(lblPos);
 
 		textField_3 = new JTextField();
-		textField_3.setBounds(6, 168, 116, 32);
+		textField_3.setBounds(6, 168, 179, 44);
 		panel.add(textField_3);
 		textField_3.setColumns(10);
 
@@ -168,7 +169,7 @@ public class Presserei1 extends JFrame {
 		panel.add(lblStr);
 
 		textField_4 = new JTextField();
-		textField_4.setBounds(177, 168, 116, 32);
+		textField_4.setBounds(243, 168, 179, 44);
 		panel.add(textField_4);
 		textField_4.setColumns(10);
 
@@ -184,11 +185,11 @@ public class Presserei1 extends JFrame {
 		});
 
 		JLabel lblKunde = new JLabel("Kunde");
-		lblKunde.setBounds(231, 140, 61, 16);
+		lblKunde.setBounds(302, 140, 61, 16);
 		panel.add(lblKunde);
 
 		textField_5 = new JTextField();
-		textField_5.setBounds(331, 168, 116, 32);
+		textField_5.setBounds(519, 168, 179, 44);
 		panel.add(textField_5);
 		textField_5.setColumns(10);
 
@@ -204,16 +205,27 @@ public class Presserei1 extends JFrame {
 		});
 
 		JLabel lblStck = new JLabel("Stück");
-		lblStck.setBounds(353, 151, 61, 16);
+		lblStck.setBounds(590, 140, 61, 16);
 		panel.add(lblStck);
 
 		JButton btnNewButton = new JButton("Weiter");
-		btnNewButton.setBounds(613, 113, 117, 38);
+		btnNewButton.setBounds(820, 274, 179, 44);
 		panel.add(btnNewButton);
 
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
+		comboBox.setMaximumRowCount(20);
+		comboBox.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		// comboBox.setPreferredSize(34,45);
+		comboBox.setPreferredSize(new Dimension(200, 10));
+		comboBox.setMaximumSize(new Dimension(200, 10));
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText((String) comboBox.getSelectedItem());
+			}
+		});
+
 		setDiscountNames s = new setDiscountNames(comboBox);
-		comboBox.setBounds(70, 277, 139, 27);
+		comboBox.setBounds(6, 62, 179, 44);
 		panel.add(comboBox);
 		System.out.println(getValue(textField));
 		JButton btnZurck = new JButton("Zurück");
@@ -224,7 +236,7 @@ public class Presserei1 extends JFrame {
 				setVisible(false);
 			}
 		});
-		btnZurck.setBounds(613, 171, 117, 38);
+		btnZurck.setBounds(820, 373, 179, 38);
 		panel.add(btnZurck);
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -300,4 +312,5 @@ public class Presserei1 extends JFrame {
 		}
 		return Double.valueOf(textField.getText());
 	}
+
 }
