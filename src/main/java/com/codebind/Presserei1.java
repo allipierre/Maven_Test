@@ -98,7 +98,7 @@ public class Presserei1 extends JFrame {
 			}
 		});
 		textField.setBounds(6, 62, 116, 32);
-		// panel.add(textField);
+		 //panel.add(textField);
 		textField.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("ArbeitsplanNr");
@@ -213,11 +213,12 @@ public class Presserei1 extends JFrame {
 		panel.add(btnNewButton);
 
 		comboBox = new JComboBox();
+		comboBox.setAutoscrolls(true);
 		comboBox.setMaximumRowCount(20);
 		comboBox.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		// comboBox.setPreferredSize(34,45);
-		comboBox.setPreferredSize(new Dimension(200, 10));
-		comboBox.setMaximumSize(new Dimension(200, 10));
+		//comboBox.setPreferredSize(new Dimension(200, 10));
+		//comboBox.setMaximumSize(new Dimension(200, 10));
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textField.setText((String) comboBox.getSelectedItem());

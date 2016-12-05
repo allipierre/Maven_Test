@@ -21,7 +21,13 @@ import java.util.Vector;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.math.BigDecimal;
+
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import java.awt.Dimension;
 import java.awt.Color;
 
@@ -53,7 +59,7 @@ public class Table extends JPanel {
 		ResultSet rset1, rset2, rset3, rset4;
 		this.username = username;
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName("oracle.jdbc.OracleDriver");
 			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.25:1521:demo12", "atlantic",
 					"Abc#123");
 			Statement stmt = conn.createStatement();
@@ -62,6 +68,7 @@ public class Table extends JPanel {
 			// String sql = "SELECT ENAME,EMPNO FROM emp";
 			sql = "SELECT PRE_ID, SOME_FLAG,PRE_STUECK,PRE_BP,PRE_DP,PRE_BOP,PRE_FORMRAND,PRE_PRESSHOEHE,PRE_FEUCHTE,PRE_MT FROM PRESSEREI_ERFASSUNG where PRE_ARBEITSPLANNUMMER="
 					+ username;
+			;
 			sql1 = "SELECT DEPTNO  FROM emp where EMPNO=" + username;
 			sql2 = "SELECT ENAME  FROM emp where EMPNO=" + username;
 			sql3 = "SELECT JOB  FROM emp where EMPNO=" + username;
@@ -150,20 +157,20 @@ public class Table extends JPanel {
 			model = new DefaultTableModel(data, columnNames) {
 				public boolean isCellEditable(int row, int column) {
 					if (column == 0) {
-						return true;
+						return false;
 					} else {
 						return false;
 					}
 				}
 
-				public Class getColumnClass(int c) {
-					switch (c) {
-					case 0:
-						return Boolean.class;
-					default:
-						return String.class;
-					}
-				}
+				// public Class getColumnClass(int c) {
+				// switch (c) {
+				// case 0:
+				// return Boolean.class;
+				// default:
+				// return String.class;
+				// }
+				// }
 			};
 
 			// BetterJTable table = new7BetterJTable(model);
@@ -173,8 +180,8 @@ public class Table extends JPanel {
 			table_1.setShowHorizontalLines(true);
 
 			table_1.setShowGrid(true);
-			model.addRow(new Object[0]);
-			model.setValueAt(false, 0, 0);
+			// model.addRow(new Object[0]);
+			// model.setValueAt(false, 0, 0);
 
 			JTableHeader th = table_1.getTableHeader();
 			th.setPreferredSize(new Dimension(35, 35));
@@ -226,6 +233,40 @@ public class Table extends JPanel {
 					groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout.createSequentialGroup()
 							.addGap(5).addComponent(js, GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)));
 			setLayout(groupLayout);
+
+			// table_1.getSelectionModel().addListSelectionListener((e) ->
+			//
+			// {
+			//
+			// if (!e.getValueIsAdjusting()) {
+			//
+			// // get value at first column and selected row
+			//
+			// BigDecimal id = (BigDecimal)
+			// table_1.getValueAt(table_1.getSelectedRow(), 0);
+			//
+			// showModal(id);
+			//
+			// }
+			//
+			// });
+
+			// table_1.addRowSelectionInterval(0, 0);
+
+			table_1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+				@Override
+				public void valueChanged(ListSelectionEvent e) {
+					if (!e.getValueIsAdjusting()) {
+
+						// get value at first column and selected row
+						BigDecimal id = (BigDecimal) table_1.getValueAt(table_1.getSelectedRow(), 0);
+						showModal(id);
+					}
+				}
+
+			});
+
 			// return table;
 		} catch (Exception e) {
 			System.out.println(e);
@@ -271,7 +312,7 @@ public class Table extends JPanel {
 	public void insertData(String MP1, String MP2, String MP3, String MP4, String Pressdruck, String Formrand,
 			String Presshohe, String Feuche, String durch, String stueck, String DP, String BP, String BOP) {
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName("oracle.jdbc.OracleDriver");
 			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.25:1521:demo12", "atlantic",
 					"Abc#123");
 
@@ -362,4 +403,12 @@ public class Table extends JPanel {
 		}
 
 	}
+
+	private void showModal(BigDecimal id) {
+
+		Modal5 m = new Modal5(id);
+		m.setVisible(true);
+
+	}
+
 }
