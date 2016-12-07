@@ -35,6 +35,7 @@ com/codebind/Pressmasse.class
 com/codebind/DateShowAPI.class
 com/codebind/SettingsDialog$1.class
 com/codebind/Table.class
+com/codebind/Jframe_Dialog.class
 com/codebind/Presserei$3.class
 com/codebind/CellRenderer.class
 com/codebind/BetterJTable$1.class

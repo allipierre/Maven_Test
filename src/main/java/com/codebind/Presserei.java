@@ -18,10 +18,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.sql.*;
 
-public class Presserei extends JFrame {
+public class Presserei extends JInternalFrame {
 	private double str;
 	private JPanel contentPane;
 	JTextField textFied_ArbeitsplanNr;
@@ -52,6 +54,7 @@ public class Presserei extends JFrame {
 	public static String username;
 	private JButton btnNewButton_2;
 	private JButton btnNewButton_3;
+	Presserei1 pr1 = new Presserei1();
 
 	/**
 	 * Launch the application.
@@ -75,6 +78,12 @@ public class Presserei extends JFrame {
 	 * @throws SQLException
 	 */
 	public Presserei(Presserei1Data data, String username) throws SQLException {
+		
+		
+		
+		
+		
+		getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
 		final Table table = new Table(username);
 		this.username = username;
 		String sql = "";
@@ -113,7 +122,7 @@ public class Presserei extends JFrame {
 		// setMaximizedBounds(new Rectangle(1, 1, 0, 0));
 		setBounds(new Rectangle(2, 0, 0, 0));
 		setTitle("Presserei");
-		setBounds(100, 100, 1024, 768);
+		setBounds(100, 100, 1024, 800);
 		contentPane = new JPanel();
 		contentPane.setAlignmentX(300.0f);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -313,12 +322,19 @@ public class Presserei extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Presserei1 pr1 = new Presserei1();
-				pr1.setVisible(true);
-				setVisible(false);
+//				 pr1 = new Presserei1();
+//				pr1.setVisible(true);
+//				setVisible(false);
+//				pr1.setEnabled(true);
+				Presserei1.closeDialog();
 
 			}
 		});
+		
+		
+		pr1.setEnabled(true);
+		
+		
 		btnNewButton.setBackground(SystemColor.control);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -401,5 +417,7 @@ public class Presserei extends JFrame {
 	public void settextFied_ArbeitsplanNr(double str) {
 		this.str = str;
 	}
+	
+	
 
 }

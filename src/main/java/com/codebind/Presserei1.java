@@ -36,6 +36,7 @@ public class Presserei1 extends JFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	JComboBox comboBox;
+	static JDialog pressereiDialog;
 
 	/**
 	 * Launch the application.
@@ -98,7 +99,7 @@ public class Presserei1 extends JFrame {
 			}
 		});
 		textField.setBounds(6, 62, 116, 32);
-		 //panel.add(textField);
+		// panel.add(textField);
 		textField.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("ArbeitsplanNr");
@@ -217,8 +218,8 @@ public class Presserei1 extends JFrame {
 		comboBox.setMaximumRowCount(20);
 		comboBox.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		// comboBox.setPreferredSize(34,45);
-		//comboBox.setPreferredSize(new Dimension(200, 10));
-		//comboBox.setMaximumSize(new Dimension(200, 10));
+		// comboBox.setPreferredSize(new Dimension(200, 10));
+		// comboBox.setMaximumSize(new Dimension(200, 10));
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textField.setText((String) comboBox.getSelectedItem());
@@ -261,8 +262,18 @@ public class Presserei1 extends JFrame {
 
 						Presserei pr = new Presserei(data, getUsername().getText());
 
-						pr.setVisible(true);
-						setVisible(false);
+						// put these there
+						 pressereiDialog = new JDialog(Presserei1.this, "Presserei", true);
+						pressereiDialog.getContentPane().add(pr);
+						pressereiDialog.pack();
+                        pr.setVisible(true);
+						pressereiDialog.setSize(1024, 728);
+						pressereiDialog.setVisible(true);
+
+						// pr.setVisible(true);
+						// pr.setFocusableWindowState(true);
+						// setEnabled(false);
+						// setVisible(false);
 						// pr.textField_KommmissionNr.setText(getKommission().getText());
 						// pr.textFied_ArbeitsplanNr.setText(getUsername().getText());
 						System.out.println("stop" + getUsername().getText());
@@ -313,5 +324,7 @@ public class Presserei1 extends JFrame {
 		}
 		return Double.valueOf(textField.getText());
 	}
-
+	public static void closeDialog(){
+		 pressereiDialog.dispose();
+	}
 }
