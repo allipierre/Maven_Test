@@ -63,7 +63,7 @@ public class Presserei extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Presserei frame = new Presserei(new Presserei1Data(), username);
+					Presserei frame = new Presserei(new Presserei1Data(), username,null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -77,14 +77,10 @@ public class Presserei extends JInternalFrame {
 	 *
 	 * @throws SQLException
 	 */
-	public Presserei(Presserei1Data data, String username) throws SQLException {
-		
-		
-		
-		
+	public Presserei(Presserei1Data data, String username, Presserei1 pres) throws SQLException {
 		
 		getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
-		final Table table = new Table(username);
+		final Table table = new Table(username, pres);
 		this.username = username;
 		String sql = "";
 		String ID = "", ID1 = "";

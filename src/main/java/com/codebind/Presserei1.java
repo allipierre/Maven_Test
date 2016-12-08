@@ -94,8 +94,9 @@ public class Presserei1 extends JFrame {
 		textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MyDialog m = new MyDialog(textField);
+				MyDialog m = new MyDialog(textField,Presserei1.this);
 				m.setVisible(true);
+				//m.setModal(true);
 			}
 		});
 		textField.setBounds(6, 62, 116, 32);
@@ -117,8 +118,13 @@ public class Presserei1 extends JFrame {
 				tz = e.getX();
 				System.out.println(e.getX());
 				System.out.println("a" + tz);
-				MyDialog m = new MyDialog(textField_1);
+				MyDialog m = new MyDialog(textField_1,Presserei1.this);
 				m.setVisible(true);
+				//m.setModal(true);
+				
+				
+				
+				
 			}
 		});
 		textField_1.setEditable(false);
@@ -140,7 +146,7 @@ public class Presserei1 extends JFrame {
 		textField_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MyDialog m = new MyDialog(textField_2);
+				MyDialog m = new MyDialog(textField_2,Presserei1.this);
 				m.setVisible(true);
 			}
 		});
@@ -160,7 +166,7 @@ public class Presserei1 extends JFrame {
 		textField_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MyDialog m = new MyDialog(textField_3);
+				MyDialog m = new MyDialog(textField_3,Presserei1.this);
 				m.setVisible(true);
 			}
 		});
@@ -180,7 +186,7 @@ public class Presserei1 extends JFrame {
 		textField_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MyDialog m = new MyDialog(textField_4);
+				MyDialog m = new MyDialog(textField_4,Presserei1.this);
 				m.setVisible(true);
 			}
 		});
@@ -200,7 +206,7 @@ public class Presserei1 extends JFrame {
 		textField_5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MyDialog m = new MyDialog(textField_5);
+				MyDialog m = new MyDialog(textField_5,Presserei1.this);
 				m.setVisible(true);
 			}
 		});
@@ -260,14 +266,14 @@ public class Presserei1 extends JFrame {
 						// data.setKunde(getValue(textField_4));
 						// data.setStuck(getValue(textField_5));
 
-						Presserei pr = new Presserei(data, getUsername().getText());
+						Presserei pr = new Presserei(data, getUsername().getText(), Presserei1.this);
 
 						// put these there
-						 pressereiDialog = new JDialog(Presserei1.this, "Presserei", true);
+						pressereiDialog = new JDialog(Presserei1.this, "Presserei", true);
 						pressereiDialog.getContentPane().add(pr);
 						pressereiDialog.pack();
-                        pr.setVisible(true);
-						pressereiDialog.setSize(1024, 728);
+						pr.setVisible(true);
+						pressereiDialog.setSize(1024, 800);
 						pressereiDialog.setVisible(true);
 
 						// pr.setVisible(true);
@@ -277,7 +283,7 @@ public class Presserei1 extends JFrame {
 						// pr.textField_KommmissionNr.setText(getKommission().getText());
 						// pr.textFied_ArbeitsplanNr.setText(getUsername().getText());
 						System.out.println("stop" + getUsername().getText());
-						Table table = new Table(getUsername().getText());
+						Table table = new Table(getUsername().getText(), Presserei1.this);
 
 						// Presserei pra = new Presserei(getUsername());
 					} else {
@@ -324,7 +330,12 @@ public class Presserei1 extends JFrame {
 		}
 		return Double.valueOf(textField.getText());
 	}
-	public static void closeDialog(){
-		 pressereiDialog.dispose();
+
+	public static void closeDialog() {
+		pressereiDialog.dispose();
+	}
+
+	public JDialog rDialog() {
+		return new JDialog(Presserei1.this, "Dialog", true);
 	}
 }

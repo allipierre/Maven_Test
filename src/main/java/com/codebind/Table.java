@@ -19,6 +19,7 @@ import java.sql.Statement;
 import java.util.Vector;
 
 import javax.swing.GroupLayout;
+import javax.swing.JDialog;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -45,13 +46,15 @@ public class Table extends JPanel {
 	Table_Model data = new Table_Model();
 	DefaultTableModel model;
 	ResultSet rset;
+	Presserei1 pres;
 
 	/**
 	 * Create the panel.
 	 * 
 	 * @return
 	 */
-	public Table(String username) {
+	public Table(String username,Presserei1 pres) {
+		this.pres=pres;
 		String sql = "";
 		String sql1 = "";
 		String sql2 = "";
@@ -258,9 +261,14 @@ public class Table extends JPanel {
 				@Override
 				public void valueChanged(ListSelectionEvent e) {
 					if (!e.getValueIsAdjusting()) {
+						// if it is not the first column, don't do anythin
+						if (table_1.getSelectedColumn() != 0)
+							return;
+						// get value at first column and selected row
 
 						// get value at first column and selected row
 						BigDecimal id = (BigDecimal) table_1.getValueAt(table_1.getSelectedRow(), 0);
+
 						showModal(id);
 					}
 				}
@@ -405,9 +413,26 @@ public class Table extends JPanel {
 	}
 
 	private void showModal(BigDecimal id) {
-
+		Presserei1Data data = new Presserei1Data();
+		// put these there
 		Modal5 m = new Modal5(id);
+       // Presserei p=new Presserei(data,username);
+	
+		JDialog pressereiDialog = new JDialog(pres, "Modal5", true);
+		pressereiDialog.add(m);
+
+		pressereiDialog.pack();
 		m.setVisible(true);
+		//pressereiDialog.setModal(true);
+		pressereiDialog.setSize(500, 500);
+		pressereiDialog.setVisible(true);
+		// m.setEnabled(true);
+
+		// m.setVisible(true);
+		//// m.setModal(true);
+		 pressereiDialog.setAlwaysOnTop(true);
+		// pressereiDialog.setEnabled(true);
+		 pressereiDialog.toFront();
 
 	}
 

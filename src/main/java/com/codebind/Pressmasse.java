@@ -52,6 +52,7 @@ public class Pressmasse extends JPanel {
 	private JTextField textField_2;
 	private JTextField textField_4;
 	Pressmasse_Modell tm = new Pressmasse_Modell();
+	Presserei1 prs=new Presserei1();
 	/**
 	 * Create the panel.
 	 */
@@ -67,7 +68,7 @@ public class Pressmasse extends JPanel {
 		textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MyDialog m=new MyDialog(textField);
+				MyDialog m=new MyDialog(textField,prs);
 				m.setVisible(true);
 			}
 		});

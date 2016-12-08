@@ -2,6 +2,7 @@ package com.codebind;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Frame;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -34,9 +35,10 @@ public class MyDialog extends JDialog implements ActionListener {
 	 */
 	public static void main(String[] args) {
 		try {
-			MyDialog dialog = new MyDialog(null);
+			MyDialog dialog = new MyDialog(null,null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
+			dialog.setModal(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -51,7 +53,8 @@ public class MyDialog extends JDialog implements ActionListener {
 		this.father = father;
 	}*/
 
-	public MyDialog(JTextField tfSource) {
+	public MyDialog(JTextField tfSource,Frame owner) {
+		super(owner);
 		setModal(true);
 		this.sourceTextField = tfSource;
 
